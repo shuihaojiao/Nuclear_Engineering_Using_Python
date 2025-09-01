@@ -1,0 +1,17 @@
+name: nuclearpy
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - mamba
+  - python==3.12
+  - numpy
+  - pandas
+  - matplotlib
+  - icecream
+  - tqdm
+  - jupyter
+  - ipykernel
+  - ipython
+  - toml
+prefix: /home/sjj/anaconda3/envs/nuclearpy
