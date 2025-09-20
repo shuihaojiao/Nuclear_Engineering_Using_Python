@@ -1,5 +1,6 @@
 name: nuclearpy
 channels:
+  - https://conda.software.inl.gov/public
   - conda-forge
   - defaults
 dependencies:
@@ -14,4 +15,7 @@ dependencies:
   - ipykernel
   - ipython
   - toml
+  - mpi4py
+  - pip:
+    - taichi==1.7.4
 prefix: /home/sjj/anaconda3/envs/nuclearpy
