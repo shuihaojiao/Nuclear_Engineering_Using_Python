@@ -9,8 +9,8 @@ import argparse
 
 @ti.data_oriented
 class PoissonSolver():
-    def __init__(self, N = 1024, ti_arch=ti.gpu, ti_data_type=ti.f64):
-        ti.init(arch=ti_arch,default_fp=ti_data_type, offline_cache=False, device_memory_GB=6, packed=True)
+    def __init__(self, N = 1024, ti_arch=ti.cpu, ti_data_type=ti.f64):
+        ti.init(arch=ti_arch,default_fp=ti_data_type, offline_cache=False, device_memory_GB=6)
         self.comm = MPI.COMM_WORLD
         self.N = N
         self.dx = 1.0 / (self.N + 1)
@@ -123,7 +123,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     show_gui = True
-    ti_arch = ti.gpu
+    ti_arch = ti.cpu
     if args.cpu:
         ti_arch = ti.cpu
     ti_data_type = ti.f64

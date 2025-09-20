@@ -8,7 +8,7 @@ import argparse
 @ti.data_oriented
 class PoissonSolver():
     def __init__(self, N = 1024, ti_data_type=ti.f64):
-        ti.init(arch=ti.gpu,default_fp=ti_data_type, offline_cache=False, device_memory_GB=6, packed=True)
+        ti.init(arch=ti.cpu,default_fp=ti_data_type, offline_cache=False, device_memory_GB=6)
         self.N = N
         self.dx = 1.0 / (self.N + 1)
         self.x = ti.field(dtype=ti_data_type, shape=(N + 2, N + 2))
