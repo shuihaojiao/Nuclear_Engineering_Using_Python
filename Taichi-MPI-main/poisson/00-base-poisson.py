@@ -48,7 +48,7 @@ def main(N = 1024, ti_data_type=ti.f64, show_gui=True, steps_interval=1):
         et = time.time()
         if show_gui:
             x_np = solver.x.to_numpy()
-            ratio = 2000.  # Adjust the field level for proper displaying
+            ratio = 2000.  # 调整字段级别，以便正确显示
             x_img = cm.jet(abs(x_np[1:N+1, 1:N+1] * ratio))
             gui.set_image(x_img)
             gui.show()
