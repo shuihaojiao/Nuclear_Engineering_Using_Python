@@ -17,7 +17,10 @@ resi[0] = max(abs(tmp))
 new = zeros(N+1)
 for t in range(0,10000):
     for j in range(1,N):
+        #高斯赛德尔迭代
         new[j] = (phi[j+1]+new[j-1]-dx**2*tmp[j-1])/2
+        #雅可比迭代
+        # new[j] = (phi[j+1]+phi[j-1]-dx**2*tmp[j-1])/2
     new[0] = new[N] = 0
     r = tmp-(new[0:N-1]-2*new[1:N]+new[2:N+1])/dx**2
     resi.append(max(abs(r)))
@@ -35,18 +38,25 @@ import matplotlib
 matplotlib.use('Agg')  # 使用非GUI后端
 
 
-plt.figure()
+# 子图1: 收敛曲线
+plt.subplot(1, 2, 1)
 plt.plot(range(len(resi)),resi,'+-')
 plt.xlabel('Number of Iterations')
 plt.ylabel('max(|r_j|)')
-plt.title('Convergence Curve')
+plt.title('Convergence Curve (gauss-seidel)')
+plt.yscale('log') # 使用对数坐标轴能更清晰地观察收敛趋势
 
-plt.figure()
+# 子图2: 残差分布
+plt.subplot(1, 2, 2)
 x = linspace(0,1,N+1)
-plt.plot(x,r0,'-',x,r10,'+-',x,r100,'x-')
-plt.legend(['0 iterations','10 iterations','100 iterations'])
+plt.plot(x,r0,'-',label='0 iterations')
+plt.plot(x,r10,'+-',label='10 iterations')
+plt.plot(x,r100,'x-',label='100 iterations')
+plt.legend()
 plt.xlabel('x_j')
 plt.ylabel('r_j')
-plt.title('r_j against x_j')
-# plt.show()
-plt.savefig('gs.png')
+plt.title('r_j against x_j (Jacobi)')
+
+plt.tight_layout()
+# plt.savefig('jacobi.png')
+plt.savefig('gauss_seidel.png')
