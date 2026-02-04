@@ -18,4 +18,5 @@ dependencies:
   - mpi4py
   - pip:
     - taichi==1.7.4
+    - scienceplots==2.2.0
 prefix: /home/sjj/anaconda3/envs/nuclearpy
